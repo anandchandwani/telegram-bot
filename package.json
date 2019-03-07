@@ -1,0 +1,31 @@
+{
+  "name": "npm-paytm",
+  "version": "1.0.0",
+  "description": "packege for paytm payment gateway ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "packege",
+    "for",
+    "paytm",
+    "payment",
+    "gateway",
+    "node",
+    "js"
+  ],
+  "author": "Anand Chandwani",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "https": "^1.0.0",
+    "nodemon": "^1.18.10",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  },
+  "engines":{
+    "node":"10.15.2"
+  }
+}
