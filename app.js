@@ -31,7 +31,7 @@ app.get('/webhook/',(req,res)=>{
  		let sender = event.sender.id
  		if (event.message && event.message.text) {
  			let text = event.message.text
- 			sendText(sender, "Hello: " + text.substring(0, 100))
+ 			sendText(sender, "Hello:" + text.substring(0, 100))
  		}
  	}
  	res.sendStatus(200)
@@ -41,7 +41,7 @@ app.get('/webhook/',(req,res)=>{
  	let messageData = {text: text}
  	request({
  		url: "https://graph.facebook.com/v2.6/me/messages",
- 		qs : {access_token: "EAAeQLRJqUqcBAFgy1FXhYZAb85ByKUgsHFnradRIzt6Nrex65q9EASl7CYzmbej4kS6f3niJ8f5WkWR03nSxo3r6sXcljIpkppWxHlBQupFaoR9uBQZCFxxmwnOK881uTfjgPawN1Lng9XCLCzuQvKcEfjabf29vlMngAeFQZDZD"},
+ 		qs : {access_token:"EAAFjKeFRsmEBAIbAeDO6CL3drbGKpn9WMIVlM65MFyofRG0swd27SgR3Mm8wZCyKQKQ2wwOfP4WorHJ5dZC93ieGjgXkk6CmSJZAMXt2Nsn0S6rRpfXiZA5CgagQqpcAHVU79YZA50S1ZAlGlzkwHry140BHGnoeqHSBqog5V8XwZDZD"},
  		method: "POST",
  		json: {
  			recipient: {id: sender},
