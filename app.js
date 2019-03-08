@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/',(req,res)=>{
-  res.send('working');
+  res.send('working...');
 });
 
 app.get('/webhook/',(req,res)=>{
