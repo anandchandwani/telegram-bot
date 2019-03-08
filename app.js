@@ -41,7 +41,7 @@ app.get('/webhook/',(req,res)=>{
  	let messageData = {text: text}
  	request({
  		url: "https://graph.facebook.com/v2.6/me/messages",
- 		qs : {access_token: token},
+ 		qs : {access_token: "EAAeQLRJqUqcBAFgy1FXhYZAb85ByKUgsHFnradRIzt6Nrex65q9EASl7CYzmbej4kS6f3niJ8f5WkWR03nSxo3r6sXcljIpkppWxHlBQupFaoR9uBQZCFxxmwnOK881uTfjgPawN1Lng9XCLCzuQvKcEfjabf29vlMngAeFQZDZD"},
  		method: "POST",
  		json: {
  			recipient: {id: sender},
