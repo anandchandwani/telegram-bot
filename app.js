@@ -31,7 +31,7 @@ app.get('/webhook/',(req,res)=>{
  		let sender = event.sender.id
  		if (event.message && event.message.text) {
  			let text = event.message.text
- 			sendText(sender, "Hello:" + text.substring(0, 100))
+ 			sendText(sender, "Hello:"+text.substring(0, 100))
  		}
  	}
  	res.sendStatus(200)
