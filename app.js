@@ -1,6 +1,6 @@
 const express  = require('express');
 const https = require('https');
-const request = require('request-promise');
+const request = require('request');
 const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
@@ -55,6 +55,5 @@ app.get('/webhook/',(req,res)=>{
  		}
  	})
  }
-
 
 app.listen(process.env.PORT || 5000)
