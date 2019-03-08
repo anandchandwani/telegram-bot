@@ -6,38 +6,55 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post('/',(req,res)=>{
+app.get('/',(req,res)=>{
   res.send('working');
 });
 
-app.post('/webhook',(req,res)=>{
- if(req.body){
-    getCurrentTime(req.body.t,function(result){
-      responseObj = {
-       "fullfilmentText":'test',
-       "source":""
-      }
-     res.json(responseObj);
-   });
- }
- else {
-   res.json({"error":"country is missing"})
- }
- });
+app.get('/webhook/',(req,res)=>{
 
-function getCurrentTime(country,callback){
-  var options = {
-    method: 'GET',
-     uri: "http://api.timezonedb.com/v2.1/list-time-zone?key=120DK1H9PPDD&format=json&country="+country+"&zone=*New*",
-      json: true
-  }
-request(options)
-  .then(function (response) {   // Request was successful, use the response object at will
-     callback(response);
-  })
-  .catch(function (err) {
-    callback('not working');
-    // Something bad happened, handle the error
-  })
-}
+      let VERIFY_TOKEN = 'pusher-bot';
+      let mode = req.query['hub.mode'];
+      let token = req.query['hub.verify_token'];
+      let challenge = req.query['hub.challenge'];
+
+      if (mode && token === VERIFY_TOKEN) {
+        res.status(200).send(challenge);
+      } else {
+          res.sendStatus(403);
+        }
+ });
+ // Creates the endpoint for our webhook
+ app.post('/webhook/', function(req, res) {
+ 	let messaging_events = req.body.entry[0].messaging
+ 	for (let i = 0; i < messaging_events.length; i++) {
+ 		let event = messaging_events[i]
+ 		let sender = event.sender.id
+ 		if (event.message && event.message.text) {
+ 			let text = event.message.text
+ 			sendText(sender, "Hello: " + text.substring(0, 100))
+ 		}
+ 	}
+ 	res.sendStatus(200)
+ })
+
+ function sendText(sender, text) {
+ 	let messageData = {text: text}
+ 	request({
+ 		url: "https://graph.facebook.com/v2.6/me/messages",
+ 		qs : {access_token: token},
+ 		method: "POST",
+ 		json: {
+ 			recipient: {id: sender},
+ 			message : messageData,
+ 		}
+ 	}, function(error, response, body) {
+ 		if (error) {
+ 			console.log("sending error")
+ 		} else if (response.body.error) {
+ 			console.log("response body error")
+ 		}
+ 	})
+ }
+
+
 app.listen(3000)
