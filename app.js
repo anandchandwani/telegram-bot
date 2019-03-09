@@ -48,7 +48,7 @@ app.post('/webhook/', function (req, res) {
       }
       if (event.postback) {
         let text = JSON.stringify(event.postback)
-        sendTextMessage(sender, "Postback: "+text.substring(0, 200), token)
+        sendTextMessage(sender, "Postback: "+text.substring(0, 200), "EAAPyJSYGdg4BAIZAwYIK7lGmrMZANpCBKijaUw50mJoQHvevaPbXmkqOJF8nZARSK2bUGf90ZCBAMGUP17Vc1IPNBK5Igux8w5WVnMtUrhUOZCl9dO2Qr4eGQR870IZBAtxkm32zpucRgPy5iOQ8ZCpWIgkCbkwOdEL6FZAATPqy8gZDZD")
         continue
       }
     }
@@ -60,7 +60,7 @@ function sendTextMessage(sender, text) {
     let messageData = { text:text }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:token},
+        qs: {access_token:"EAAPyJSYGdg4BAIZAwYIK7lGmrMZANpCBKijaUw50mJoQHvevaPbXmkqOJF8nZARSK2bUGf90ZCBAMGUP17Vc1IPNBK5Igux8w5WVnMtUrhUOZCl9dO2Qr4eGQR870IZBAtxkm32zpucRgPy5iOQ8ZCpWIgkCbkwOdEL6FZAATPqy8gZDZD"},
         method: 'POST',
         json: {
             recipient: {id:sender},
