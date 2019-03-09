@@ -12,7 +12,7 @@ app.get('/',(req,res)=>{
 
 app.post('/webhook',(req,res)=>{
  if(req.body){
-    getCurrentTime(req.body.t,function(result){
+    getCurrentTime(req.body.queryResult.parameters['geo-country'],function(result){
       responseObj = {
         "fulfillmentText": "hello?",
         "fulfillmentMessages": [
