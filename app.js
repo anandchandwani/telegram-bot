@@ -6,7 +6,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post('/',(req,res)=>{
+app.get('/',(req,res)=>{
   res.send('working');
 });
 
@@ -14,8 +14,8 @@ app.post('/webhook/',(req,res)=>{
  if(req.body){
     getCurrentTime(req.body.t,function(result){
       responseObj = {
-       "fullfilmentText":'test',
-       "source":""
+        "speech" : 'echo',
+         "displayText" : 'echo'
       }
      res.json(responseObj);
    });
