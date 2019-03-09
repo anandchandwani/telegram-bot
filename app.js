@@ -14,8 +14,18 @@ app.post('/webhook',(req,res)=>{
  if(req.body){
     getCurrentTime(req.body.t,function(result){
       responseObj = {
-        "speech" : 'echo',
-         "displayText" : 'echo'
+        "fulfillmentText": "hello?",
+        "fulfillmentMessages": [
+      {
+        "text": {
+          "text": [
+            "hello"
+          ]
+        }
+      }
+    ],
+    "source":""
+
       }
      res.json(responseObj);
    });
@@ -40,4 +50,4 @@ request(options)
     // Something bad happened, handle the error
   })
 }
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 8080)
