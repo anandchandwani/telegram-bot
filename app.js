@@ -12,14 +12,15 @@ app.get('/',(req,res)=>{
 
 app.post('/webhook',(req,res)=>{
  if(req.body){
-    getCurrentTime(req.body.queryResult.parameters['geo-country'],function(result){
+   let country = req.body.queryResult.parameters['geo-country']
+    getCurrentTime(country,function(result){
       responseObj = {
-        "fulfillmentText": "hello?",
+        "fulfillmentText":result,
         "fulfillmentMessages": [
       {
         "text": {
           "text": [
-            "hello"
+            result
           ]
         }
       }
@@ -42,7 +43,9 @@ function getCurrentTime(country,callback){
       json: true
   }
 request(options)
-  .then(function (response) {   // Request was successful, use the response object at will
+  .then(function (response) {
+    var response = new Date(response.zones[0].timestamp);
+        // Request was successful, use the response object at will
      callback(response);
   })
   .catch(function (err) {
