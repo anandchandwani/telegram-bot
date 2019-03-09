@@ -45,7 +45,7 @@ function sendTextMessage(sender, text) {
         "json": {
             "recipient": {
                 "id": sender,
-                "test":"test"
+                
             },
             "message": messageData,
         }
