@@ -10,7 +10,7 @@ app.get('/',(req,res)=>{
   res.send('working');
 });
 
-app.post('/webhook/',(req,res)=>{
+app.post('/webhook',(req,res)=>{
  if(req.body){
     getCurrentTime(req.body.t,function(result){
       responseObj = {
