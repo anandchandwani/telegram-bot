@@ -39,7 +39,7 @@ app.post('/webhook',(req,res)=>{
 function getCurrentTime(country,callback){
   var options = {
     method: 'GET',
-     uri: "http://api.timezonedb.com/v2.1/list-time-zone?key=120DK1H9PPDD&format=json&country="+country+"&zone=*New*",
+     uri: "http://api.timezonedb.com/v2.1/list-time-zone?key=120DK1H9PPDD&format=json&country=US&zone=*New*",
       json: true
   }
 request(options)
