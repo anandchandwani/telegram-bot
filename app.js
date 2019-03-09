@@ -10,7 +10,7 @@ app.get('/',(req,res)=>{
   res.send('working...');
 });
 
-app.get('/webhook',(req,res)=>{
+app.get('/webhook/',(req,res)=>{
   if (req.query['hub.verify_token'] === 'pusher-bot') {
   		res.send(req.query['hub.challenge']);
   	}
@@ -19,8 +19,8 @@ app.get('/webhook',(req,res)=>{
  // Creates the endpoint for our webhook
 
 
-const token = "EAAeQLRJqUqcBAC1HgvLDJBh5Odwcjw6etzR1eSEF0aWZBQTfLYmajtTPVxPxXwmbXMzC3JlP27ZBCEV9nWDZA7v8OupC4c05ksige49mODV5CxCfgpcAGD135BEXihUBlSgFuLGbKpf3c3kQI8UOZCIL5QHP1yhG5QzLnyQuPgZDZD";
-app.post('/webhook/', function(req, res) {
+const token = "EAAgjip2k1bUBAEl78hcTT1J5zOZChushpcG2xKyzUujDspJL0ONyD1ni7ieUpk3XQzeEO5PxAhY6dDzVrDadXkIqmI7E4kP16t5IMca75Al6nlp7YLpi5IFHpQf1cJyzEsnyNlTfhk6b8VhXZBZCSMsQIUuKqqahYMq7gyjBwZDZD";
+app.post('/webhook', function(req, res) {
     var messaging_events = req.body.entry[0].messaging;
     for (var i = 0; i < messaging_events.length; i++) {
         var event = req.body.entry[0].messaging[i];
