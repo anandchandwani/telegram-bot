@@ -39,12 +39,12 @@ app.post('/webhook',(req,res)=>{
 function getCurrentTime(country,callback){
   var options = {
     method: 'GET',
-     uri: "http://api.timezonedb.com/v2.1/list-time-zone?key=120DK1H9PPDD&format=json&country=US&zone=*New*",
+     uri: "http://worldtimeapi.org/api/timezone/Europe/London",
       json: true
   }
 request(options)
   .then(function (response) {
-    var response = new Date(response.zones[0].timestamp);
+    var response = new Date(response.unixtime);
         // Request was successful, use the response object at will
      callback(response);
   })
