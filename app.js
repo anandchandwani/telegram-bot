@@ -52,7 +52,8 @@ app.post('/webhook/', function (req, res) {
         continue
       }
     }
-    res.sendStatus(200)
+    //response.setHeader("Content-Type", /");
+    res.status(200).end();
   })
 
 
