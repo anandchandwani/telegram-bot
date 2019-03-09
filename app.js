@@ -8,6 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/',(req,res)=>{
   res.send('working...');
+
 });
 
 app.get('/webhook/',(req,res)=>{
@@ -19,7 +20,7 @@ app.get('/webhook/',(req,res)=>{
  // Creates the endpoint for our webhook
 
 
-const token = "EAAgjip2k1bUBAEl78hcTT1J5zOZChushpcG2xKyzUujDspJL0ONyD1ni7ieUpk3XQzeEO5PxAhY6dDzVrDadXkIqmI7E4kP16t5IMca75Al6nlp7YLpi5IFHpQf1cJyzEsnyNlTfhk6b8VhXZBZCSMsQIUuKqqahYMq7gyjBwZDZD";
+const token = "EAAPyJSYGdg4BAE3X4pdAJ4wZBzrtdoKoZBaCXjU6NxZAQXY7dJYTZCKYCPxbNxjkz3czeo4mk4Hw4rApPTK5v9gP2cujZBR1FhYpO1Ds1W3IpEb7NXU79Qjiemvd9r2WkXCE3jpTIZCBTBeahYkVmyGyTIxrMfVslTxYmdj8OXuAZDZD";
 app.post('/webhook', function(req, res) {
     var messaging_events = req.body.entry[0].messaging;
     for (var i = 0; i < messaging_events.length; i++) {
