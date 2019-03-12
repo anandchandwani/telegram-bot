@@ -16,7 +16,7 @@ const token = "704268428:AAHN9vIyF0s9tIzYhkwsVwP9HLVS1tqUutU";
 let telegram_url = "https://api.telegram.org/bot" +token+"/sendMessage";
 
 app.post('/start_bot', function(req, res) {
-	const {message} = req.body;
+	const { message } = req.body.message;
   let reply = 'Hi';
   sendMessage(telegram_url,message,reply,res);
 })
