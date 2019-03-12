@@ -25,7 +25,7 @@ app.post('/start_bot', function(req, res) {
 function sendMessage(url, message,reply,res) {
 	let messageData = {text: text}
 	request({
-		url:url,
+		url:telegram_url,
 		method: "POST",
     text:reply,
 		json: {
