@@ -28,9 +28,9 @@ function sendMessage(url, message,reply,res) {
 		url:telegram_url,
 		method: "POST",
     text:reply,
-	  {
+	  json:{
 			chat_id: message.chat.id
-		},
+		}
 	}, function(error, response, body) {
 		if (error) {
 			console.log("sending error")
