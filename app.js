@@ -16,6 +16,7 @@ const token = "704268428:AAHN9vIyF0s9tIzYhkwsVwP9HLVS1tqUutU";
 let telegram_url = "https://api.telegram.org/bot" +token+"/sendMessage";
 var TelegramBot = require('node-telegram-bot-api');
 
+telegram = new TelegramBot(token, { polling: true });
 appss.post('/start_bot', function(req, res) {
   telegram.on("text", (message) => {
     telegram.sendMessage(message.chat.id, "Hello");
