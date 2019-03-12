@@ -26,8 +26,10 @@ app.get('/webhook/', function(req, res) {
 	if (req.query['hub.verify_token'] === "blondiebytes") {
 		res.send(req.query['hub.challenge'])
 	}
-	res.send("Wrong token");
-   next();
+  else {
+    res.writeHead(200, {"Content-Type": "application/json"});
+     res.end(JSON.stringify(someObject));
+}
 })
 
 app.post('/webhook/', function(req, res) {
