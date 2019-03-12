@@ -19,7 +19,6 @@ app.post('/start_bot', function(req, res) {
 	const {message} = req.body;
   let reply = 'Hi';
   sendMessage(telegram_url,message,reply,res);
-  return res.end();
 })
 
 function sendMessage(url, message,reply,res) {
