@@ -7,36 +7,35 @@ const app = express()
 
 app.set('port', (process.env.PORT || 5000))
 // Allows us to process the data
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
-// ROUTES
+const TelegramBot = require('node-telegram-bot-api');
 
+// replace the value below with the Telegram token you receive from @BotFather
+const token = '704268428:AAHN9vIyF0s9tIzYhkwsVwP9HLVS1tqUutU';
 
-const token = "704268428:AAHN9vIyF0s9tIzYhkwsVwP9HLVS1tqUutU";
-let telegram_url = "https://api.telegram.org/bot" +token+"/sendMessage";
+// Create a bot that uses 'polling' to fetch new updates
+const bot = new TelegramBot(token, {polling: true});
 
-app.post('/start_bot', function(req, res) {
-	const {message} = req.body;
-  let reply = 'Hi';
-  sendMessage(telegram_url,message,reply,res);
-})
+// Matches "/echo [whatever]"
+bot.onText(/\/echo (.+)/, (msg, match) => {
+  // 'msg' is the received Message from Telegram
+  // 'match' is the result of executing the regexp above on the text content
+  // of the message
 
-function sendMessage(url, message,reply,res) {
-	request({
-		url:telegram_url,
-		method: "POST",
-    text:reply,
-	  json:{
-			chat_id: message.chat.id
-		}
-	}, function(error, response, body) {
-		if (error) {
-			console.log("sending error")
-		} else if (response.body.error) {
-			console.log("response body error")
-		}
-	})
-}
+  const chatId = msg.chat.id;
+  const resp = match[1]; // the captured "whatever"
+
+  // send back the matched "whatever" to the chat
+  bot.sendMessage(chatId, resp);
+});
+
+// Listen for any kind of message. There are different kinds of
+// messages.
+bot.on('message', (msg) => {
+  const chatId = msg.chat.id;
+  // send a message to the chat acknowledging receipt of their message
+  bot.sendMessage(chatId, 'Received your message');
+});
+
 app.listen(app.get('port'), function() {
 	console.log("running: port")
 })
