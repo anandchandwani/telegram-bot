@@ -3,27 +3,40 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 
-const appss = express()
+const app = express()
 
-appss.set('port', (process.env.PORT || 5000))
+app.set('port', (process.env.PORT || 5000))
 // Allows us to process the data
-appss.use(bodyParser.urlencoded({extended: false}))
-appss.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 // ROUTES
 
 
 const token = "704268428:AAHN9vIyF0s9tIzYhkwsVwP9HLVS1tqUutU";
 let telegram_url = "https://api.telegram.org/bot" +token+"/sendMessage";
-var TelegramBot = require('node-telegram-bot-api');
 
-telegram = new TelegramBot(token, { polling: true });
-appss.post('/start_bot', function(req, res) {
-  telegram.on("text", (message) => {
-    telegram.sendMessage(message.chat.id, "Hello");
-  });
+app.post('/start_bot', function(req, res) {
+	const {message} = req.body;
+  let reply = 'Hi';
+  sendMessage(telegram_url,message,reply,res);
 })
 
-
-appss.listen(appss.get('port'), function() {
+function sendMessage(url, message,reply,res) {
+	request({
+		url:telegram_url,
+		method: "POST",
+    text:reply,
+	  json:{
+			chat_id: message.chat.id
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log("sending error")
+		} else if (response.body.error) {
+			console.log("response body error")
+		}
+	})
+}
+app.listen(app.get('port'), function() {
 	console.log("running: port")
 })
