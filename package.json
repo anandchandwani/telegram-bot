@@ -1,7 +1,7 @@
 {
-  "name": "npm-paytm",
+  "name": "telegram-bot",
   "version": "1.0.0",
-  "description": "packege for paytm payment gateway ",
+  "description": "Telegram horoscope bot ",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
